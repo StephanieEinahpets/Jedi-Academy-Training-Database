@@ -397,7 +397,7 @@ def seed_database(app):
     db.session.commit()
     print(f"Created {len(created_enrollments)} course enrollments")
 
-    print("\n🔐 TEST CREDENTIALS:")
+    print("TEST CREDENTIALS:")
     print("-" * 60)
     print("Grand Master: yoda@jediorder.com / ForceMaster900")
     print("Council:      mace@jediorder.com / PurpleBlade77")

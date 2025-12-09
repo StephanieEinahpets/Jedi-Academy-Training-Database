@@ -20,13 +20,8 @@ def add_course(auth_info):
   if not instructor_query:
     return jsonify({"message": "Instructor not found"}), 404
 
-  new_course = Courses(
-    instructor_id=post_data['instructor_id'],
-    course_name=post_data['course_name'],
-    difficulty=post_data['difficulty'],
-    duration_weeks=post_data['duration_weeks'],
-    max_students=post_data.get('max_students', 20)
-  )
+  new_course = Courses.new_course_obj()
+  populate_object(new_course, post_data)
 
   try:
     db.session.add(new_course)

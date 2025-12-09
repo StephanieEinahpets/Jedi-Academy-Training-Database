@@ -33,14 +33,8 @@ def add_padawan(auth_info):
     if not master_query:
       return jsonify({"message": "master not found"}), 404
 
-  new_padawan = Padawans(
-    user_id=post_data['user_id'],
-    species_id=post_data['species_id'],
-    padawan_name=post_data['padawan_name'],
-    age=post_data['age'],
-    master_id=master_id,
-    training_level=post_data.get('training_level', 1)
-  )
+  new_padawan = Padawans.new_padawan_obj()
+  populate_object(new_padawan, post_data)
 
   try:
     db.session.add(new_padawan)

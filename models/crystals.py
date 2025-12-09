@@ -22,6 +22,8 @@ class Crystals(db.Model):
     self.rarity_level = rarity_level
     self.force_amplify = force_amplify
 
+  def new_crystal_obj():
+    return Crystals('', '', '', 1.0)
 
 class CrystalsSchema(ma.Schema):
   class Meta:

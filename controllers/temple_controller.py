@@ -15,13 +15,8 @@ def add_temple(auth_info):
     if not post_data.get(field):
       return jsonify({"message": f"{field} is required"}), 400
 
-  new_temple = Temples(
-    temple_name=post_data['temple_name'],
-    planet=post_data['planet'],
-    master_count=post_data.get('master_count', 0),
-    padawan_limit=post_data.get('padawan_limit', 100)
-  )
-
+  new_temple = Temples.new_temple_obj()
+  populate_object(new_temple, post_data)
   try:
     db.session.add(new_temple)
     db.session.commit()

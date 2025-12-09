@@ -25,14 +25,8 @@ def add_lightsaber(auth_info):
   if not crystal_query:
     return jsonify({"message": "crystal not found"}), 404
 
-  new_lightsaber = Lightsabers(
-    owner_id=post_data['owner_id'],
-    crystal_id=post_data['crystal_id'],
-    saber_name=post_data['saber_name'],
-    hilt_material=post_data['hilt_material'],
-    blade_color=post_data['blade_color'],
-    is_completed=post_data.get('is_completed', False)
-  )
+  new_lightsaber = Lightsabers.new_lightsaber_obj()
+  populate_object(new_lightsaber, post_data)
 
   try:
     db.session.add(new_lightsaber)

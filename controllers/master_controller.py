@@ -22,13 +22,8 @@ def add_master(auth_info):
 
   user_query.force_rank = 'Master'
 
-  new_master = Masters(
-    user_id=post_data['user_id'],
-    master_name=post_data['master_name'],
-    specialization=post_data['specialization'],
-    years_training=post_data.get('years_training', 0),
-    max_padawans=post_data.get('max_padawans', 3)
-  )
+  new_master = Masters.new_master_obj()
+  populate_object(new_master, post_data)
 
   try:
     db.session.add(new_master)

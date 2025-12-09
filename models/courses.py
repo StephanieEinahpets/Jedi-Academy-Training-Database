@@ -25,6 +25,8 @@ class Courses(db.Model):
     self.duration_weeks = duration_weeks
     self.max_students = max_students
 
+  def new_course_obj():
+    return Courses('', '', '', 0, 20)
 
 class CoursesSchema(ma.Schema):
   class Meta:

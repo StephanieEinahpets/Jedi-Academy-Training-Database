@@ -31,6 +31,8 @@ class Padawans(db.Model):
     self.age = age
     self.training_level = training_level
 
+  def new_padawan_obj():
+    return Padawans('', '', '', None, None, 1)
 
 class PadawansSchema(ma.Schema):
   class Meta:

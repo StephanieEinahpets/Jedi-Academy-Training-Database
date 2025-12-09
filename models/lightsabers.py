@@ -27,6 +27,8 @@ class Lightsabers(db.Model):
     self.blade_color = blade_color
     self.is_completed = is_completed
 
+  def new_lightsaber_obj():
+    return Lightsabers('', '', '', '', '', False)
 
 class LightsabersSchema(ma.Schema):
   class Meta:

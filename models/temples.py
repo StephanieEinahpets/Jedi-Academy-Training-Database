@@ -25,6 +25,9 @@ class Temples(db.Model):
     self.is_active = is_active
 
 
+  def new_temple_obj():
+    return Temples('', '', 0, 100, True)
+
 class TemplesSchema(ma.Schema):
   class Meta:
     fields = ['temple_id', 'temple_name', 'planet', 'master_count', 'padawan_limit', 'is_active', 'users']

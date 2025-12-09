@@ -2,6 +2,7 @@ from flask import jsonify, request
 
 from db import db
 from models.species import Species, species_schema, species_list_schema
+from util.reflection import populate_object
 from lib.authenticate import requires_min_rank
 
 
@@ -14,12 +15,8 @@ def add_species(auth_info):
     if not post_data.get(field):
       return jsonify({"message": f"{field} is required"}), 400
 
-  new_species = Species(
-    species_name=post_data['species_name'],
-    homeworld=post_data['homeworld'],
-    force_sensitive=post_data.get('force_sensitive', True),
-    avg_lifespan=post_data['avg_lifespan']
-  )
+  new_species = Species.new_species_obj()
+  populate_object(new_species, post_data)
 
   try:
     db.session.add(new_species)
@@ -33,7 +30,7 @@ def add_species(auth_info):
 
 def get_species_by_id(species_id):
   species_query = db.session.query(Species).filter(Species.species_id == species_id).first()
-  
+
   if not species_query:
     return jsonify({"message": "species not found"}), 404
 

@@ -26,6 +26,8 @@ class Masters(db.Model):
     self.years_training = years_training
     self.max_padawans = max_padawans
 
+  def new_master_obj():
+    return Masters('', '', '', 1, 3)
 
 class MastersSchema(ma.Schema):
   class Meta:

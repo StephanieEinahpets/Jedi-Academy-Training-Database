@@ -22,6 +22,8 @@ class Species(db.Model):
     self.force_sensitive = force_sensitive
     self.avg_lifespan = avg_lifespan
 
+  def new_species_obj():
+    return Species('', '', True, 100)
 
 class SpeciesSchema(ma.Schema):
   class Meta:

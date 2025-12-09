@@ -23,6 +23,8 @@ class PadawanCourses(db.Model):
     self.completion_date = completion_date
     self.final_score = final_score
 
+  def new_padawan_course_obj():
+    return PadawanCourses('', '', None, None)
 
 class PadawanCoursesSchema(ma.Schema):
   class Meta:

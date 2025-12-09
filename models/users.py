@@ -20,10 +20,12 @@ class Users(db.Model):
   joined_date = db.Column(db.DateTime(), default=datetime.utcnow)
 
   temple = db.relationship("Temples", back_populates="users")
-  auth_tokens = db.relationship("AuthTokens", back_populates="user", cascade="all, delete-orphan")
+  auth_tokens = db.relationship("AuthTokens", back_populates="user")
+
   padawan = db.relationship("Padawans", back_populates="user", uselist=False, cascade="all, delete-orphan")
   masters = db.relationship("Masters", back_populates="user", cascade="all, delete-orphan")
   lightsabers = db.relationship("Lightsabers", back_populates="owner", cascade="all, delete-orphan")
+
 
   def __init__(self, temple_id, username, email, password, force_rank='Youngling', midi_count=2500, is_active=True):
     self.temple_id = temple_id

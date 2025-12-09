@@ -4,6 +4,7 @@ from db import db
 from models.padawan_courses import PadawanCourses, padawan_course_schema
 from models.padawans import Padawans
 from models.courses import Courses
+from util.reflection import populate_object
 from lib.authenticate import requires_min_rank
 
 
@@ -29,7 +30,8 @@ def add_enrollment(auth_info):
   if existing_enrollment:
     return jsonify({"message": "Padawan already enrolled in this course"}), 400
 
-  new_enrollment = PadawanCourses(padawan_id=post_data['padawan_id'], course_id=post_data['course_id'])
+  new_enrollment = PadawanCourses.new_padawan_course_obj()
+  populate_object(new_enrollment, post_data)
 
   try:
     db.session.add(new_enrollment)
